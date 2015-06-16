@@ -38,10 +38,13 @@ public:
     void writeBytes(uint16_t addr, byte * buf, int len);
     byte readByte(uint16_t addr);
     void readBytes(uint16_t addr, byte * buf, int len);
+    void erasePage(uint16_t addr);
 
     void enableWrite();
     void disableWrite();
     void sendAddress(uint16_t addr);
+    void writePage(uint16_t addr, byte * buf, int len);
+    void readPage(uint16_t addr, byte * buf, int len);
 
 private:
     SoftwareSPI spi;
