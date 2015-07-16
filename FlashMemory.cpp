@@ -21,7 +21,7 @@ bool FlashMemory::isWritable() {
     return readStatus() & (1 << 1); //bit2 is WEL
 }
 
-void FlashMemory::writeByte(uint16_t addr,byte b) {
+void FlashMemory::writeByte(uint32_t addr,byte b) {
     while(isBusy()) delay(0);
 
     enableWrite(); //write is disabled automatically afterwards
@@ -33,7 +33,7 @@ void FlashMemory::writeByte(uint16_t addr,byte b) {
     spi.deselect();
 }
 
-void FlashMemory::writeBytes(uint16_t addr, byte * buf, int len) {
+void FlashMemory::writeBytes(uint32_t addr, byte * buf, int len) {
     int i=0;
     while (i < len) {
         int writeSize = 0x100 - (addr & 0xff);
@@ -58,7 +58,7 @@ void FlashMemory::writeBytes(uint16_t addr, byte * buf, int len) {
 }
 
 
-byte FlashMemory::readByte(uint16_t addr) {
+byte FlashMemory::readByte(uint32_t addr) {
     while(isBusy()) delay(0);
 
     spi.select();
@@ -70,7 +70,7 @@ byte FlashMemory::readByte(uint16_t addr) {
     return value;
 }
 
-void FlashMemory::readBytes(uint16_t addr, byte * buf, int len) {
+void FlashMemory::readBytes(uint32_t addr, byte * buf, int len) {
     int i=0;
     while (i < len) {
         int readSize = 0x100 - (addr & 0xff);
@@ -83,7 +83,7 @@ void FlashMemory::readBytes(uint16_t addr, byte * buf, int len) {
     }
 }
 
-void FlashMemory::erasePage(uint16_t addr) {
+void FlashMemory::erasePage(uint32_t addr) {
     addr = addr & 0xffffff00; //target page
 
     while(isBusy()) delay(0);
@@ -109,13 +109,13 @@ void FlashMemory::disableWrite() {
     spi.deselect();
 }
 
-void FlashMemory::sendAddress(uint16_t addr) {
+void FlashMemory::sendAddress(uint32_t addr) {
     spi.transfer((addr & 0xff0000) >> 4); //addr 0
     spi.transfer((addr & 0xff00) >> 2); //addr 1
     spi.transfer((addr & 0xff)); //addr 2
 }
 
-void FlashMemory::writePage(uint16_t addr, byte * buf, int len) {
+void FlashMemory::writePage(uint32_t addr, byte * buf, int len) {
     byte cbuf[16];
     Serial.print("cbuf: ");
     readPage(0x300,cbuf,16);
@@ -154,7 +154,7 @@ void FlashMemory::writePage(uint16_t addr, byte * buf, int len) {
     spi.deselect();
 }
 
-void FlashMemory::readPage(uint16_t addr, byte * buf, int len) {
+void FlashMemory::readPage(uint32_t addr, byte * buf, int len) {
     while(isBusy()) delay(0);
 
     spi.select();

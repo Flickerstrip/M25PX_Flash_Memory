@@ -34,17 +34,17 @@ public:
     byte readStatus();
     bool isBusy();
     bool isWritable();
-    void writeByte(uint16_t addr,byte b);
-    void writeBytes(uint16_t addr, byte * buf, int len);
-    byte readByte(uint16_t addr);
-    void readBytes(uint16_t addr, byte * buf, int len);
-    void erasePage(uint16_t addr);
+    void writeByte(uint32_t addr,byte b);
+    void writeBytes(uint32_t addr, byte * buf, int len);
+    byte readByte(uint32_t addr);
+    void readBytes(uint32_t addr, byte * buf, int len);
+    void erasePage(uint32_t addr);
 
     void enableWrite();
     void disableWrite();
-    void sendAddress(uint16_t addr);
-    void writePage(uint16_t addr, byte * buf, int len);
-    void readPage(uint16_t addr, byte * buf, int len);
+    void sendAddress(uint32_t addr);
+    void writePage(uint32_t addr, byte * buf, int len);
+    void readPage(uint32_t addr, byte * buf, int len);
 
 private:
     SoftwareSPI spi;
