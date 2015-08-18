@@ -110,8 +110,8 @@ void FlashMemory::disableWrite() {
 }
 
 void FlashMemory::sendAddress(uint32_t addr) {
-    spi.transfer((addr & 0xff0000) >> 4); //addr 0
-    spi.transfer((addr & 0xff00) >> 2); //addr 1
+    spi.transfer((addr & 0xff0000) >> 16); //addr 0
+    spi.transfer((addr & 0xff00) >> 8); //addr 1
     spi.transfer((addr & 0xff)); //addr 2
 }
 
