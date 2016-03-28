@@ -1,0 +1,12 @@
+{
+    "name": "M25PE80 Flash Memory",
+    "keywords": "flash, memory",
+    "description": "A barebones library for interacting with the M25PE80 flash memory chip",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/Flickerstrip/M25PE80_Flash_Memory.git"
+    },
+    "frameworks": "arduino",
+    "platforms": "*"
+}
