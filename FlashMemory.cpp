@@ -38,11 +38,11 @@ void FlashMemory::writeBytes(uint32_t addr, byte * buf, int len) {
     while (i < len) {
         int writeSize = 0x100 - (addr & 0xff);
         if (writeSize > len - i) writeSize = len - i;
-        Serial.print("Writing: 0x");
-        Serial.print(addr,HEX);
-        Serial.print("(");
-        Serial.print(writeSize);
-        Serial.println(")");
+        //Serial.print("Writing: 0x");
+        //Serial.print(addr,HEX);
+        //Serial.print("(");
+        //Serial.print(writeSize);
+        //Serial.println(")");
 //        for (int l=0; l<10; l++) {
 //            Serial.print("0x");
 //            Serial.print(buf[l]);
@@ -116,34 +116,20 @@ void FlashMemory::sendAddress(uint32_t addr) {
 }
 
 void FlashMemory::writePage(uint32_t addr, byte * buf, int len) {
-    byte cbuf[16];
-    Serial.print("cbuf: ");
-    readPage(0x300,cbuf,16);
-    for (int i=0; i<16; i++) {
-      if (i % 16 == 0 && i != 0) Serial.println();
-      Serial.print("0x");
-      byte c = cbuf[i];
-      if (c < 0x10) Serial.print("0");
-      Serial.print(c,HEX);
-      Serial.print(" ");
-    }
-    Serial.println();
-    
-
     while(isBusy()) delay(0);
 
     enableWrite(); //write is disabled automatically afterwards
-    Serial.print("PAGE_WRITE: ");
-    Serial.print(addr,HEX);
-    Serial.print(" ");
-    Serial.print(len);
-    Serial.print(" [");
-    Serial.print(buf[0]);
-    Serial.print(" ");
-    Serial.print(buf[1]);
-    Serial.print(" ");
-    Serial.print(buf[2]);
-    Serial.println("]");
+//    Serial.print("PAGE_WRITE: ");
+//    Serial.print(addr,HEX);
+//    Serial.print(" ");
+//    Serial.print(len);
+//    Serial.print(" [");
+//    Serial.print(buf[0]);
+//    Serial.print(" ");
+//    Serial.print(buf[1]);
+//    Serial.print(" ");
+//    Serial.print(buf[2]);
+//    Serial.println("]");
 
     spi.select();
     spi.transfer(PAGE_WRITE);
