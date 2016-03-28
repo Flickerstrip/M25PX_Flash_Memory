@@ -16,7 +16,7 @@
                 "Julian Hartline"
             ]
         }
-    ]
+    ],
     "frameworks": "arduino",
     "platforms": "*"
 }
