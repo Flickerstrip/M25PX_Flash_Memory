@@ -7,6 +7,16 @@
         "type": "git",
         "url": "https://github.com/Flickerstrip/M25PE80_Flash_Memory.git"
     },
+    "dependencies":
+    [
+        {
+            "name": "SoftwareSPI",
+            "authors":
+            [
+                "Julian Hartline"
+            ]
+        }
+    ]
     "frameworks": "arduino",
     "platforms": "*"
 }
