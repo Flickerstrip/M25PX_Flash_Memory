@@ -1,2 +1,2 @@
-# M25PE80_Flash_Memory
-An Arduino library for the M25PE80 Flash Memory chip
+# M25PX_Flash_Memory
+An Arduino library for the Micron M25PX Flash Memory series
